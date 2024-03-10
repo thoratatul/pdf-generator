@@ -1,0 +1,117 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Students ID Cards Pdf Generator",
+    "version": "1.0.0",
+    "description": "This is a simple CRUD API application made with Express and documented with Swagger",
+    "license": {
+      "name": "MIT",
+      "url": "https://spdx.org/licenses/MIT.html"
+    },
+    "contact": {
+      "name": "Atul N Thorat",
+      "url": "https://github.com/thoratatul",
+      "email": "atulthorat26@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3050"
+    }
+  ],
+  "paths": {
+    "/healthCheck": {
+      "get": {
+        "description": "This API will be used for to check server is running or not",
+        "responses": {
+          "status": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["success", "message", "data"],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "true/false"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message respective to success value"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "if success is true, this will represent necessary response object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generateIdCardsSync": {
+      "get": {
+        "description": "This API will be used for to generate students id card in sychronous call",
+        "responses": {
+          "status": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["success", "message", "data"],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "true/false"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message respective to success value"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "if success is true, this will represent necessary response object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generateIdCardsAsync": {
+      "get": {
+        "description": "This API will be used for to generate students id card in asychronous call",
+        "responses": {
+          "status": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["success", "message", "data"],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "true/false"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "message respective to success value"
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "if success is true, this will represent necessary response object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

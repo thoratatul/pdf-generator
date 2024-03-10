@@ -8,14 +8,25 @@ const morgan = require("morgan");
 const cors = require("cors");
 const compression = require("compression");
 const helmet = require("helmet");
-const swaggerJSDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
 const { logDate } = require("./helpers/date");
 const { sequelize } = require("./config/database");
 const allowedMethods = ["GET"];
 const { printLog } = require("./helpers/logger");
 global.printLog = printLog;
 global.uuidv4 = uuidv4;
+const swaggerJSDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDefinition = require("./swagger.json");
+const option = {
+  swaggerDefinition,
+  apis: ["./routes/*.js"],
+};
+const swaggerSpec = swaggerJSDoc(option);
+const { VERSION, PORT, NODE_ENV, MYSQL_PORT } = process.env;
+
+if (NODE_ENV != "production") {
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+}
 
 app.use((req, res, next) => {
   req["reqId"] = uuidv4();
@@ -67,18 +78,22 @@ app.use(
 );
 
 app.get("/healthCheck", (req, res) => {
-  res.send({ status: "OK", version: process.env.VERSION });
+  res.send({
+    success: true,
+    message: "server is up",
+    data: { version: VERSION },
+  });
 });
 
 app.use(require("./routes"));
 
-app.listen(process.env.PORT, async () => {
+app.listen(PORT, async () => {
   const reqId = uuidv4();
   printLog("info", reqId, "index", "server", {
-    message: `server started on ${process.env.PORT}`,
+    message: `server started on ${PORT}`,
   });
   await sequelize.authenticate();
   printLog("info", reqId, "index", "database", {
-    message: `mysql database connected!`,
+    message: `mysql database connected on port ${MYSQL_PORT}!`,
   });
 });

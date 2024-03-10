@@ -1,4 +1,4 @@
-{Student Pdf Generation}
+# Students ID Card Pdf Generation
 
 - This Node.js project utilizes MySQL and PDFKit to retrieve data from a MySQL database and convert it into PDF format, specifically in an ID card format.
 
@@ -53,3 +53,11 @@ Dependencies:
 - npx sequelize-cli model:generate --name students --attributes college_id:integer,salutaion:string,first_name:string,middle_name:string,last_name:string,email:string,mobile:string,gender:string,dob:string,emergency_contact:string,profile_picture:text,signature:text,blood_group:string - use this command to generate db migrations
 - npx sequelize-cli db:migrate - use this command to create table students
 - npx sequelize-cli db:seed:all - use this command to insert data into table
+
+# Postman Collection
+
+- https://api.postman.com/collections/33507509-573a6cf2-0a2f-4746-880e-cb6c4d35bfd5?access_key=PMAT-01HRMNPP9EKHX4CG981BR2MV7A
+
+# Swagger Doc
+
+- URL: http://localhost:3050/docs
