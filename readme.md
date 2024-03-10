@@ -61,3 +61,7 @@ Dependencies:
 # Swagger Doc
 
 - URL: http://localhost:3050/docs
+
+# Mysql Dump
+
+- Please refer to sql folder to direct import data into your mysql database
